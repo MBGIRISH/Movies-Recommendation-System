@@ -52,10 +52,3 @@ Thumbs.db
 
 # Logs
 *.log
-
-# Node modules (if any)
-node_modules/
-
-# Build outputs
-dist/
-build/

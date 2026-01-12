@@ -7,6 +7,12 @@ A production-grade recommendation system implementing content-based and collabor
 
 ---
 
+## Executive Summary
+
+This project demonstrates how collaborative and content-based recommendation systems can be built, evaluated, and scaled for real-world streaming platforms, with explicit handling of sparsity, cold-start, and production constraints. The system achieves production-ready performance (RMSE < 1.0) using matrix factorization and content similarity techniques, addressing key challenges in personalized content discovery for platforms with large catalogs and sparse user interactions.
+
+---
+
 ## Problem Statement
 
 Streaming platforms face a critical challenge: users are overwhelmed by thousands of available movies, leading to decision paralysis and reduced engagement. Without effective recommendation systems, users spend excessive time browsing instead of watching content, resulting in:
@@ -127,6 +133,18 @@ The system implements two complementary recommendation approaches to address dif
 - Excluded movies rated by user in training set from recommendations
 - Reported metrics computed on all valid test predictions
 
+**Beyond RMSE: Additional Evaluation Metrics (Awareness)**
+
+While RMSE and MAE are standard for rating prediction tasks, production recommendation systems often employ ranking-based metrics that better reflect user experience:
+
+- **Precision@K:** Measures the fraction of recommended items in the top-K list that are relevant to the user. Critical for evaluating recommendation quality when users only see top recommendations.
+
+- **Recall@K:** Measures the fraction of relevant items that appear in the top-K recommendations. Important for assessing coverage and ensuring diverse content discovery.
+
+- **NDCG (Normalized Discounted Cumulative Gain):** Combines ranking quality with relevance, giving higher weight to items ranked higher in the recommendation list. Industry standard for evaluating recommendation ranking quality, especially when explicit ratings are available.
+
+These metrics are particularly valuable for production systems where recommendation ranking and user engagement (clicks, watches) matter more than precise rating prediction accuracy.
+
 ## Results
 
 **Model Performance:**
@@ -227,7 +245,7 @@ Movie-Recommendation-System/
 ├── outputs/                              # Generated visualizations and results
 │   ├── rating_distribution.png
 │   ├── genre_analysis.png
-│   ├── top_movies.png
+│   ├── top_rated_movies.png
 │   ├── user_activity.png
 │   └── model_evaluation.png
 │
